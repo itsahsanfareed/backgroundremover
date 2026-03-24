@@ -3,101 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Background Remover | Premium Tool</title>
+    <title>ClearDrop | High-Quality Background Remover</title>
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-    <div class="background-elements">
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
-        <div class="orb orb-3"></div>
-    </div>
-
-    <main class="container glass-panel">
-        <header class="header">
-            <h1>Remove Background</h1>
-            <p>100% Automatically and Free. Stunning quality in seconds.</p>
-        </header>
-
-        <!-- Options Area -->
-        <div class="options-bar">
-            <div class="option-group">
-                <label for="bg-color">Background Color:</label>
-                <input type="color" id="bg-color" value="#000000" class="color-picker">
-                <span class="color-hint">(Leave default black for transparent)</span>
-            </div>
-            <div class="option-group developer-mode">
-                <button id="dev-btn" class="btn btn-secondary btn-sm">Developers: Get API Key</button>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                ClearDrop
+            </a>
+            <div class="nav-links">
+                <a href="/static/api.html" class="btn btn-outline btn-sm">Developers / API</a>
             </div>
         </div>
+    </nav>
 
-        <!-- Main Workspace -->
-        <div class="workspace">
-            <!-- Upload Area -->
-            <div id="upload-area" class="upload-area active-view">
-                <input type="file" id="file-input" accept="image/jpeg, image/png, image/webp" hidden>
-                <div class="upload-content" id="drop-zone">
-                    <svg xmlns="http://www.w3.org/20MSBuildTools/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="upload-icon">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                        <polyline points="17 8 12 3 7 8"></polyline>
-                        <line x1="12" y1="3" x2="12" y2="15"></line>
-                    </svg>
-                    <h3>Upload an Image</h3>
-                    <p>Drag & drop your file here, or <span class="browse-text">browse</span></p>
-                    <span class="file-limits">Supports JPG, PNG, WEBP</span>
-                </div>
-            </div>
-
-            <!-- Loading State -->
-            <div id="loading-area" class="loading-area hidden">
-                <div class="spinner"></div>
-                <h3>Processing Image...</h3>
-                <p>Our AI is delicately removing the background.</p>
-            </div>
-
-            <!-- Result Area -->
-            <div id="result-area" class="result-area hidden">
-                <div class="image-comparison">
-                    <div class="image-wrapper">
-                        <span class="badge">Original</span>
-                        <img id="original-image" src="" alt="Original">
-                    </div>
-                    <div class="image-wrapper checkerboard-bg">
-                        <span class="badge">Removed Background</span>
-                        <img id="processed-image" src="" alt="Processed">
-                    </div>
-                </div>
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <span class="badge new-badge">v1.1 Now Live - High Quality Mode</span>
+                <h1>Remove image backgrounds instantly.</h1>
+                <p>Get professional-grade cutouts in seconds. 100% automatically and free. Perfect for product photos, headshots, and marketing materials.</p>
                 
-                <div class="actions">
-                    <button id="reset-btn" class="btn btn-secondary">
-                        <svg xmlns="http://www.w3.org/20MSBuildTools/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="1 4 1 10 7 10"></polyline>
-                            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
-                        </svg>
-                        Upload Another
-                    </button>
-                    <a id="download-btn" class="btn btn-primary" href="#" download="processed_image.png">
-                        <svg xmlns="http://www.w3.org/20MSBuildTools/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                            <polyline points="7 10 12 15 17 10"></polyline>
-                            <line x1="12" y1="15" x2="12" y2="3"></line>
-                        </svg>
-                        Download HD
-                    </a>
+                <div class="features-list">
+                    <div class="feature-item">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        Original Resolution Preserved
+                    </div>
+                    <div class="feature-item">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        AI Alpha Matting for Hair/Fur
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-action">
+                <div class="app-card">
+                    <!-- Tool Options -->
+                    <div class="tool-options">
+                        <label for="bg-color">Background Color</label>
+                        <div class="color-picker-wrapper">
+                            <input type="color" id="bg-color" value="#000000" class="color-picker">
+                            <span class="color-hint">Black = Transparent</span>
+                        </div>
+                    </div>
+
+                    <!-- Main Workspace -->
+                    <div class="workspace">
+                        <!-- Upload Area -->
+                        <div id="upload-area" class="upload-area active-view">
+                            <input type="file" id="file-input" accept="image/jpeg, image/png, image/webp" hidden>
+                            <div class="upload-content" id="drop-zone">
+                                <div class="icon-circle">
+                                    <svg xmlns="http://www.w3.org/20MSBuildTools/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                                </div>
+                                <h3>Upload an Image</h3>
+                                <p>Drag & drop or <span class="browse-text">browse files</span></p>
+                                <span class="file-limits">JPG, PNG, WEBP (Max 10MB)</span>
+                            </div>
+                        </div>
+
+                        <!-- Loading State -->
+                        <div id="loading-area" class="loading-area hidden">
+                            <div class="spinner"></div>
+                            <h3>AI is processing...</h3>
+                            <p>Delicately extracting your subject.</p>
+                        </div>
+
+                        <!-- Result Area -->
+                        <div id="result-area" class="result-area hidden">
+                            <div class="image-comparison">
+                                <div class="image-wrapper checkerboard-bg">
+                                    <img id="processed-image" src="" alt="Processed">
+                                </div>
+                            </div>
+                            
+                            <div class="actions">
+                                <button id="reset-btn" class="btn btn-outline">Start Over</button>
+                                <a id="download-btn" class="btn btn-primary" href="#" download="processed_image.png">Download Image</a>
+                            </div>
+                            
+                            <div style="display: none;">
+                                <!-- Hidden original image just to keep functionality intact if script.js requires it -->
+                                <img id="original-image" src="" alt="Original">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Error Toast -->
+                <div id="error-message" class="error-toast hidden"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Value Props Section -->
+    <section class="value-props">
+        <div class="container">
+            <h2 class="section-title">Built for Professionals</h2>
+            <div class="grid-3">
+                <div class="prop-card">
+                    <div class="prop-icon">⚡</div>
+                    <h3>Lightning Fast API</h3>
+                    <p>Integrate our background removal into your own app with just a few lines of code via our REST API.</p>
+                </div>
+                <div class="prop-card">
+                    <div class="prop-icon">🎯</div>
+                    <h3>Pixel Perfect Quality</h3>
+                    <p>Utilizing high-quality Alpha Matting techniques to ensure edges, hair, and fur are flawlessly preserved.</p>
+                </div>
+                <div class="prop-card">
+                    <div class="prop-icon">🎨</div>
+                    <h3>Custom Backgrounds</h3>
+                    <p>Export transparent PNGs, or automatically apply corporate brand colors behind your subjects in one step.</p>
                 </div>
             </div>
         </div>
-        
-        <div id="error-message" class="error-toast hidden"></div>
-    </main>
+    </section>
 
+    <!-- Footer -->
     <footer class="footer">
-        <p>Powered by AI &bull; Privacy First (Images are never stored)</p>
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+                ClearDrop
+            </div>
+            <p>&copy; 2026 ClearDrop API. Private and secure by design.</p>
+        </div>
     </footer>
 
     <script src="/static/script.js"></script>

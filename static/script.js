@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     display = document.createElement('div');
                     display.id = 'api-key-display';
                     display.className = 'api-key-display';
-                    document.querySelector('.options-bar').insertAdjacentElement('afterend', display);
+                    document.getElementById('api-key-container').appendChild(display);
                 }
                 display.innerHTML = `<strong>Your API Key:</strong> ${data.api_key}<br><br><small>${data.message}</small>`;
             } catch (err) {

@@ -81,8 +81,8 @@ async def remove_background(
         if input_image.mode != "RGBA":
             input_image = input_image.convert("RGBA")
 
-        # High Quality Parameters: post_process_mask cleans edges, alpha_matting is great for fur/hair
-        output_image = remove(input_image, post_process_mask=True, alpha_matting=True)
+        # Process the image with default fast parameters
+        output_image = remove(input_image)
 
         # Apply custom background color if requested
         if bg_color:

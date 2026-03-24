@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClearDrop API Documentation</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                ClearDrop
+            </a>
+            <div class="nav-links">
+                <a href="/" class="btn btn-outline btn-sm">Back to Home</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero" style="padding: 3rem 0; border-bottom: none;">
+        <div class="container" style="text-align: center;">
+            <span class="badge new-badge">API V1 Documentation</span>
+            <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">Integrate background removal into your app.</h1>
+            <p style="max-width: 600px; margin: 0 auto; font-size: 1.1rem;">Generate an API key below to access our extremely fast, AI-powered background removal endpoints.</p>
+            
+            <button id="generate-key-btn" class="btn btn-primary" style="margin-top: 2rem;">Generate New API Key</button>
+            <div id="api-key-container" style="max-width: 600px; margin: 0 auto;"></div>
+            <div id="error-message" class="error-toast hidden"></div>
+        </div>
+    </header>
+
+    <!-- Documentation Section -->
+    <section class="value-props" style="padding-top: 2rem;">
+        <div class="container">
+            <div class="app-card" style="max-width: 800px; margin: 0 auto;">
+                <h2 style="margin-bottom: 0.5rem;">Endpoints</h2>
+                <hr style="border: none; border-top: 1px solid var(--border-color); margin-bottom: 2rem;">
+
+                <div style="margin-bottom: 2rem;">
+                    <h3><span style="background: #10b981; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; margin-right: 8px;">POST</span>/api/remove-bg</h3>
+                    <p style="margin-top: 0.5rem;">Removes the background from an uploaded image and yields a fully transparent PNG.</p>
+                </div>
+
+                <h3 style="margin-bottom: 1rem;">Headers</h3>
+                <ul style="margin-left: 1.5rem; margin-bottom: 2rem; color: var(--text-secondary);">
+                    <li><strong>x-api-key</strong>: (Optional/Required based on your backend config) - Your generated API Key.</li>
+                </ul>
+
+                <h3 style="margin-bottom: 1rem;">Form Data (multipart/form-data)</h3>
+                <ul style="margin-left: 1.5rem; margin-bottom: 2rem; color: var(--text-secondary);">
+                    <li><strong>image</strong>: The image file (JPG, PNG, WEBP). Required.</li>
+                    <li><strong>bg_color</strong>: Hex code (e.g. #FF0000). Optional. The API will apply this color behind the subject instead of returning a transparent image.</li>
+                </ul>
+
+                <h3 style="margin-bottom: 1rem;">cURL Example</h3>
+                <pre style="background: var(--bg-color); padding: 1.5rem; border-radius: 8px; overflow-x: auto; font-family: monospace; font-size: 0.85rem; border: 1px solid var(--border-color);">
+curl -X POST "http://localhost:8000/api/remove-bg" \
+  -H "x-api-key: YOUR_API_KEY_HERE" \
+  -H "Content-Type: multipart/form-data" \
+  -F "image=@/path/to/your/image.jpg" \
+  --output "result.png"
+                </pre>
+
+                <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Python Requests Example</h3>
+                <pre style="background: var(--bg-color); padding: 1.5rem; border-radius: 8px; overflow-x: auto; font-family: monospace; font-size: 0.85rem; border: 1px solid var(--border-color);">
+import requests
+
+url = "http://localhost:8000/api/remove-bg"
+headers = {"x-api-key": "YOUR_API_KEY_HERE"}
+files = {"image": open("image.jpg", "rb")}
+
+response = requests.post(url, headers=headers, files=files)
+
+if response.status_code == 200:
+    with open("result.png", "wb") as f:
+        f.write(response.content)
+                </pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+                ClearDrop API
+            </div>
+            <p>&copy; 2026 ClearDrop. Private and secure by design.</p>
+        </div>
+    </footer>
+
+    <script src="/static/api.js"></script>
+</body>
+</html>
